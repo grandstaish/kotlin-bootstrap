@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "nz.bradcampbell.kotlinbootstrap"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Dagger 2
+    compile 'com.google.dagger:dagger:2.0.2'
+    kapt 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    //Rx dependencies
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxkotlin:0.24.100'
+
+    // Test
+    testCompile 'junit:junit:4.12'
+}
+
+buildscript {
+    ext.kotlin_version = '1.0.0-beta-1103'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
