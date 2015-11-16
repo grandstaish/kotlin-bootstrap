@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import javax.inject.Inject
 
 class MainFragment : Fragment(), MainView {
@@ -35,6 +36,7 @@ class MainFragment : Fragment(), MainView {
     }
 
     override fun displayEntity(entity: Entity) {
-        Log.d("MainFragment", entity.title)
+        var v = view.findViewById(R.id.text) as TextView
+        v.text = entity.title
     }
 }
